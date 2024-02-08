@@ -17,7 +17,7 @@ export type Customer = {
 };
 
 export type Invoice = {
-  id: string;
+  id: number;
   customer_id: string;
   amount: number;
   date: string;
@@ -32,7 +32,7 @@ export type Revenue = {
 };
 
 export type LatestInvoice = {
-  id: string;
+  id: number;
   name: string;
   image_url: string;
   email: string;
@@ -45,7 +45,7 @@ export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
 };
 
 export type InvoicesTable = {
-  id: string;
+  id: number;
   customer_id: string;
   name: string;
   email: string;
@@ -81,7 +81,7 @@ export type CustomerField = {
 };
 
 export type InvoiceForm = {
-  id: string;
+  id: number;
   customer_id: string;
   amount: number;
   status: 'pending' | 'paid';

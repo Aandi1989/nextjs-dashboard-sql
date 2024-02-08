@@ -9,7 +9,7 @@ import {
     Revenue,
   } from '../lib/definitions';
 import { formatCurrency } from '../lib/utils';
-  import { executeQuery } from './db';
+import { executeQuery } from './db';
 
 
 export async function fetchRevenue() {
@@ -161,5 +161,23 @@ export async function fetchInvoicesPages(query: string) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total number of invoices.');
+  }
+}
+
+// <CustomerField>
+export async function fetchCustomers() {
+  try {
+    const data = await executeQuery(`
+      SELECT
+        id,
+        name
+      FROM customers
+      ORDER BY name ASC
+    `);
+    
+    return data as CustomerField[];
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all customers.');
   }
 }
