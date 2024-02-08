@@ -40,3 +40,5 @@ next-env.d.ts
 .txt
 
 .env
+
+db.js
