@@ -1,0 +1,2 @@
+1. как избавиться от does not exist on type 'OkPacket | RowDataPacket[] | ResultSetHeader[] | RowDataPacket[][] | OkPacket[] | ProcedureCallPacket'.
+  Property 'count' does not exist on type 'OkPacket'.ts(2339) возвращаемой MySQL запросами.
