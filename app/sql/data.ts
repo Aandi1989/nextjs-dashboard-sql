@@ -164,7 +164,7 @@ export async function fetchInvoicesPages(query: string) {
   }
 }
 
-// <CustomerField>
+
 export async function fetchCustomers() {
   try {
     const data = await executeQuery(`
@@ -181,3 +181,31 @@ export async function fetchCustomers() {
     throw new Error('Failed to fetch all customers.');
   }
 }
+
+
+export async function fetchInvoiceById(id: string) {
+  try {
+    const data = await executeQuery(`
+      SELECT
+        invoices.id,
+        invoices.customer_id,
+        invoices.amount,
+        invoices.status
+      FROM invoices
+      WHERE invoices.id = ${id};
+    `);
+
+    // @ts-ignore
+    const invoice = data.map((item) => ({
+      ...item,
+      // Convert amount from cents to dollars
+      amount: item.amount / 100,
+    }));
+   
+    return invoice[0] as InvoiceForm;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoice.');
+  }
+}
+
